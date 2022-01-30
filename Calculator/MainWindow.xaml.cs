@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Calculator
 {
@@ -20,7 +10,7 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        string saved;
+        string? saved;
         private void Button_Click_clear(object sender, RoutedEventArgs e)
         {
             inputTb.Text = "";
@@ -120,11 +110,14 @@ namespace Calculator
 
         private void Button_Click_BaseTentoBinary(object sender, RoutedEventArgs e)
         {
-            int text = Int32.Parse(inputTb.Text);
-            string binary = Convert.ToString(text, 2);
-            saved = inputTb.Text;
-            inputTb.Text = binary;
-            Save();
+            if (!inputTb.Text.Contains(","))
+            {
+                int text = Int32.Parse(inputTb.Text);
+                string binary = Convert.ToString(text, 2);
+                saved = inputTb.Text;
+                inputTb.Text = binary;
+                Save();
+            }
         }
 
         private void Button_Click_BinarytoBaseTen(object sender, RoutedEventArgs e)
@@ -136,11 +129,14 @@ namespace Calculator
         }
         private void Button_Click_BaseTentoHex(object sender, RoutedEventArgs e)
         {
-            int text = Int32.Parse(inputTb.Text);
-            string binary = Convert.ToString(text, 16);
-            saved = inputTb.Text;
-            inputTb.Text = binary;
-            Save();
+            if (!inputTb.Text.Contains(","))
+            {
+                int text = Int32.Parse(inputTb.Text);
+                string binary = Convert.ToString((int)text, 16);
+                saved = inputTb.Text;
+                inputTb.Text = binary;
+                Save();
+            }
         }
 
         private void Button_Click_HextoBaseTen(object sender, RoutedEventArgs e)
